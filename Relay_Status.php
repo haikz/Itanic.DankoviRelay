@@ -19,26 +19,15 @@ $p6[]=array("","","","","","","","","","");
 for ($i=0; $i<8; $i++)
 	$p6[$i]=str_replace("INTEGER:"," ",snmpget($ip, $pass, '.1.3.6.1.4.1.19865.1.2.3.'.($i+1).'.0'));
 
-if (isset($_POST['button']))
+if (isset($_POST['button']) && $p6[0]<10) // $p6[0]<10 no analog input
 {
-	//snmpset must be performed
-	
-	
-	for ($i=0; $i<8; $i++)
-	{
-		if(isset($_POST['p3'.($i+1)]))				
-			$p3byte = $p3byte | pow(2,$i);
-	}
-	snmpset($ip, $pass, '.1.3.6.1.4.1.19865.1.2.1.0',"i",$p3byte);
-	
+  // set relay
 	for ($i=0; $i<8; $i++)
 	{
 		if(isset($_POST['p5'.($i+1)]))				
 			$p5byte = $p5byte | pow(2,$i);
 	}
 	snmpset($ip, $pass, '.1.3.6.1.4.1.19865.1.2.2.0',"i",$p5byte);	
-	
-	//echo $p5byte;
 };
 
 

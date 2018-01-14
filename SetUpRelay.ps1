@@ -1,6 +1,6 @@
 ﻿$ip = "172.16.100.2"
 $pass ='private'  # SNMP read-write community string
-$highThreshold = 507
+$highThreshold = 500
 # http://denkovi.com/Documents/DAEnetIP2-and-peripheral-with-LM35/Current-Version/UserManual.pdf
 $snmp = New-Object -ComObject olePrn.OleSNMP
 $snmp.Open($ip, $pass,2,3000)
